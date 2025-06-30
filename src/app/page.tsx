@@ -1,7 +1,21 @@
-import Image from "next/image";
+'use client';
+import { useState, useEffect } from "react";
+
+import Sidebar from "./sidebar";
+
+
+
 
 export default function Home() {
+ 
+ 
+
+ 
+
   return (
-    <div></div>
+    <div className="bg-gray-200 flex flex-col">
+      <Sidebar />
+      
+      </div>
   );
 }
