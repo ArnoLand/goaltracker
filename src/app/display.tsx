@@ -8,29 +8,7 @@ export default function Display({
   goals: Goal[];
 }) {
 
-   const fetchgoals = async () => {
-    try {
-      const response = await fetch("api/goals", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.ok) {
-        throw new Error();
-      }
-      const fetchedgoals = await response.json();
-      console.log(fetchedgoals);
-    } catch (error) {
-      console.error("Failed", error);
-    }
-  };
-
-  useEffect(() => {
-    console.log("log");
-    fetchgoals();
-  }, [goals]);
-  
+   
   return (
     <div className="flex w-full items-center justify-center">
       <div className="flex bg-gray-500 w-3/4 h-3/4 rounded-md items-center justify-center">
