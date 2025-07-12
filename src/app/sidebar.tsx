@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Create from "./creategoal";
+import { Goal } from "./page";
 import {
-  Goal,
+  Goal as GoalIcon,
   Search,
   Plus,
 } from "lucide-react";
 
-export default function Sidebar() {
+export default function Sidebar({setGoals, goals}:{setGoals: React.Dispatch<React.SetStateAction<Goal[]>>, goals:Goal[]}) {
   const [open, setOpen] = useState(true);
   const [popup, setPopup] = useState(false);
 
@@ -18,7 +19,7 @@ export default function Sidebar() {
     >
       <div className="inline-flex items-center">
         <div className="min-w-[40px] mr-6">
-          <Goal
+          <GoalIcon
             size={40}
             className="bg-white rounded-full border-2 border-gray-300 cursor-pointer"
             onClick={() => setOpen(!open)}
@@ -64,7 +65,7 @@ export default function Sidebar() {
         </h1>
       </button>
 
-      {popup && <Create closePopup={() => setPopup(false)} />}
+      {popup && <Create setGoals={setGoals} goals={goals} closePopup={() => setPopup(false)} />}
     </aside>
   );
 }
