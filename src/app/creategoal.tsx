@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Goal } from "./page";
 
 export default function Create({
+  
   closePopup,
   setGoals,
   goals,
@@ -14,26 +15,13 @@ export default function Create({
 }) {
   const [name, setName] = useState("");
   const [points, setPoints] = useState(0);
-
+console.log("get");
   // const onSubmit = () => {
   //   const dateTime = new Date()
   //   const id = dateTime.toString()
   //   setGoals([...goals, { name, points, id }]);
   // };
-  const fetchgoals = async () => {
-    try {
-      const response = await fetch("api/goals", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(response);
-    } catch (error) {
-      console.error("Failed", error);
-    }
-  };
-  
+ 
   const onSubmit = async () => {
     const dateTime = new Date();
     const id = dateTime.toString();
@@ -51,10 +39,7 @@ export default function Create({
       console.error("Failed", error);
     }
   };
- useEffect(() => {
-    console.log("log");
-    fetchgoals();
-  }, []);
+ 
 
   useEffect(() => {
     console.log("Points changed:", points);
