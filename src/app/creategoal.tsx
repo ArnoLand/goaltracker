@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import { Goal } from "./page";
 
@@ -18,7 +20,20 @@ export default function Create({
   //   const id = dateTime.toString()
   //   setGoals([...goals, { name, points, id }]);
   // };
-
+  const fetchgoals = async () => {
+    try {
+      const response = await fetch("api/goals", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.error("Failed", error);
+    }
+  };
+  
   const onSubmit = async () => {
     const dateTime = new Date();
     const id = dateTime.toString();
@@ -31,11 +46,15 @@ export default function Create({
         body: JSON.stringify({ id, name, points }),
       });
       console.log(response);
-      setGoals([...goals, { name, points, id }])
+      setGoals([...goals, { name, points, id }]);
     } catch (error) {
       console.error("Failed", error);
     }
   };
+ useEffect(() => {
+    console.log("log");
+    fetchgoals();
+  }, []);
 
   useEffect(() => {
     console.log("Points changed:", points);
@@ -49,6 +68,7 @@ export default function Create({
     console.log("Goal changed:", goals);
   }, [goals]);
 
+ 
   return (
     <div className="relative top-5 flex flex-col">
       <div className="flex flex-col bg-gray-900 p-6 rounded-lg shadow-lg w-62 h-70 gap-4">
